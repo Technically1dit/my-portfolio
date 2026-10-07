@@ -178,12 +178,13 @@ function AchievementsPage() {
                 Specializations &amp; Credentials.
               </h2>
             </div>
-            <button
-              onClick={() => setResumeOpen(true)}
+            <a
+              href="/vandit-shastri-resume.pdf"
+              download="Vandit_Shastri_Resume.pdf"
               className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
             >
-              <FileCheck size={14} /> View Full Curriculum Vitae
-            </button>
+              <Download size={14} /> Download Curriculum Vitae (PDF)
+            </a>
           </div>
 
           <div className="mt-10 divide-y divide-border border-y border-border">

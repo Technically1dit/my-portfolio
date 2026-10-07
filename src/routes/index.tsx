@@ -123,13 +123,14 @@ function Index() {
                 <span>Explore My Projects</span>
                 <ArrowRight size={15} />
               </Link>
-              <button
-                onClick={() => setResumeOpen(true)}
+              <a
+                href="/vandit-shastri-resume.pdf"
+                download="Vandit_Shastri_Resume.pdf"
                 className="button-secondary"
               >
-                <FileText size={15} className="text-primary" />
-                <span>View My Resume</span>
-              </button>
+                <Download size={15} className="text-primary" />
+                <span>Download Resume (PDF)</span>
+              </a>
             </div>
 
             {/* Social Links */}
@@ -382,13 +383,14 @@ function Index() {
             <span>Start a Conversation</span>
             <ArrowUpRight size={15} />
           </Link>
-          <button
-            onClick={() => setResumeOpen(true)}
+          <a
+            href="/vandit-shastri-resume.pdf"
+            download="Vandit_Shastri_Resume.pdf"
             className="button-secondary"
           >
-            <FileText size={15} className="text-primary" />
-            <span>View Curriculum Vitae</span>
-          </button>
+            <Download size={15} className="text-primary" />
+            <span>Download Resume (PDF)</span>
+          </a>
         </div>
       </section>
       </FadeUp>

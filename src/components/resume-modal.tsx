@@ -58,14 +58,15 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all hover:border-primary hover:bg-surface-soft"
-              title="Print Resume"
+            <a
+              href="/vandit-shastri-resume.pdf"
+              download="Vandit_Shastri_Resume.pdf"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-3 py-1.5 font-mono text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
+              title="Download Resume PDF"
             >
-              <Printer size={13} />
-              <span className="hidden sm:inline">Print</span>
-            </button>
+              <Download size={13} />
+              <span>Download PDF</span>
+            </a>
             <button
               onClick={handleCopyEmail}
               className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 font-mono text-xs text-foreground transition-all hover:border-primary hover:bg-surface-soft"
@@ -238,11 +239,17 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         </div>
 
         {/* Footer actions */}
-        <div className="flex items-center justify-between border-t border-border/80 bg-surface-soft px-6 py-3.5">
-          <span className="font-mono text-xs text-muted-foreground">Vandit Shastri · Portfolio & Dossier</span>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/80 bg-surface-soft px-6 py-3.5">
+          <a
+            href="/vandit-shastri-resume.pdf"
+            download="Vandit_Shastri_Resume.pdf"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-primary hover:underline"
+          >
+            <Download size={13} /> Download Official PDF (Vandit_Shastri_Resume.pdf)
+          </a>
           <button
             onClick={onClose}
-            className="rounded-lg bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="rounded-lg bg-card border border-border px-4 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary"
           >
             Close Viewer
           </button>

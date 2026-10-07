@@ -66,55 +66,113 @@ function AboutPage() {
         highlight="Machine Learning Engineer · High-Performance Python"
       />
 
-      {/* Main Narrative & Quote */}
+      {/* Main Narrative, Photo & Quote */}
       <FadeUp>
-      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-2 lg:py-20">
-        <div className="prose-panel space-y-5">
-          <div className="flex items-center gap-2">
-            <span className="eyebrow">Professional Practice</span>
-          </div>
-          <h2 className="font-display text-3xl font-medium sm:text-4xl text-foreground">
-            From data pipelines to conversational agents.
-          </h2>
-          <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-            As a Machine Learning Engineer at <strong>Rootle</strong> in Ahmedabad, I architect AI-driven solutions designed for scale. My daily focus revolves around conversational AI agents, high-performance Python pipelines, Generative AI models, and the engineering required to transition theoretical models into reliable production utilities.
-          </p>
-          <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Before Rootle, I worked as a Python Developer at <strong>Actowiz Solutions</strong>, where I built large-scale data extraction frameworks and automated ETL pipelines. That foundational experience instilled a system-first discipline: writing clean code, designing robust abstractions, and never treating machine learning as an uninspected black box.
-          </p>
-          <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Beyond the code, I am an <strong>enthusiastic, curious, and collaborative teammate</strong>. I bring optimism, humor, and high intellectual dedication to every team and project I contribute to.
-          </p>
-        </div>
+      <section className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+          
+          {/* Photo Card */}
+          <div className="space-y-6">
+            <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-card shadow-xl group">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-soft">
+                <img
+                  src="/vandit-photo.jpg"
+                  alt="Vandit Shastri — Machine Learning Engineer"
+                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                
+                {/* Floating status pill */}
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card/80 px-3 py-1 text-[11px] font-mono font-medium text-foreground backdrop-blur-md">
+                  <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+                  <span>Available for high-impact AI/ML</span>
+                </div>
 
-        {/* Quote & Academic Ambition Card */}
-        <div className="space-y-6">
-          <div className="quote-panel rounded-2xl border border-border bg-surface-soft p-8">
-            <span className="font-display text-6xl text-accent">“</span>
-            <blockquote className="font-display text-2xl font-medium leading-snug text-foreground sm:text-3xl">
-              At the intersection of modern software engineering and intelligent automation, I build AI-driven solutions designed for scale.
-            </blockquote>
-            <p className="mt-6 font-mono text-xs text-muted-foreground">
-              — Vandit Shastri, Engineering Dossier
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6 backdrop-blur-sm">
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase text-primary">
-              <GraduationCap size={16} /> Academic Foundation & Research
+                {/* Bottom Photo Overlay Info */}
+                <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-border/80 bg-card/90 p-4 backdrop-blur-md shadow-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-display text-base font-semibold text-foreground">Vandit Shastri</h3>
+                      <p className="font-mono text-xs text-primary">Machine Learning Engineer @ Rootle</p>
+                    </div>
+                    <span className="font-mono text-[10px] text-muted-foreground">Ahmedabad, IN</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="mt-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
-              Having completed my Bachelor of Technology (BTech) in Computer Science at LJ University (2022–2026), I maintain a strong foundation in core computer science, discrete math, and machine learning theory.
-            </p>
-            <div className="mt-4 flex items-center gap-3">
+
+            {/* Quick Actions */}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="/vandit-shastri-resume.pdf"
+                download="Vandit_Shastri_Resume.pdf"
+                className="button-primary flex-1 justify-center text-xs py-2.5"
+              >
+                <Download size={14} />
+                <span>Download Resume (PDF)</span>
+              </a>
               <button
                 onClick={() => setResumeOpen(true)}
-                className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-primary hover:underline"
+                className="button-secondary text-xs py-2.5 px-4"
               >
-                <FileText size={13} /> View Full Curriculum Vitae <ArrowUpRight size={13} />
+                <FileText size={14} className="text-primary" />
+                <span>View Details</span>
               </button>
             </div>
           </div>
+
+          {/* Narrative Column */}
+          <div className="space-y-6">
+            <div className="prose-panel space-y-5">
+              <div className="flex items-center gap-2">
+                <span className="eyebrow">Professional Practice</span>
+              </div>
+              <h2 className="font-display text-3xl font-medium sm:text-4xl text-foreground">
+                From data pipelines to conversational agents.
+              </h2>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                As a Machine Learning Engineer at <strong>Rootle</strong> in Ahmedabad, I architect AI-driven solutions designed for scale. My daily focus revolves around conversational AI agents, high-performance Python pipelines, Generative AI models, and the engineering required to transition theoretical models into reliable production utilities.
+              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Before Rootle, I worked as a Python Developer at <strong>Actowiz Solutions</strong>, where I built large-scale data extraction frameworks and automated ETL pipelines. That foundational experience instilled a system-first discipline: writing clean code, designing robust abstractions, and never treating machine learning as an uninspected black box.
+              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Beyond the code, I am an <strong>enthusiastic, curious, and collaborative teammate</strong>. I bring optimism, humor, and high intellectual dedication to every team and project I contribute to.
+              </p>
+            </div>
+
+            {/* Quote Panel */}
+            <div className="quote-panel rounded-2xl border border-border bg-surface-soft p-6">
+              <span className="font-display text-5xl text-accent leading-none">“</span>
+              <blockquote className="font-display text-xl font-medium leading-snug text-foreground sm:text-2xl mt-1">
+                At the intersection of modern software engineering and intelligent automation, I build AI-driven solutions designed for scale.
+              </blockquote>
+              <p className="mt-4 font-mono text-xs text-muted-foreground">
+                — Vandit Shastri, Engineering Dossier
+              </p>
+            </div>
+
+            {/* Academic Foundation Card */}
+            <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6 backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase text-primary">
+                <GraduationCap size={16} /> Academic Foundation & Research
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                Having completed my Bachelor of Technology (BTech) in Computer Science at LJ University (2022–2026), I maintain a strong foundation in core computer science, discrete math, and machine learning theory.
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <a
+                  href="/vandit-shastri-resume.pdf"
+                  download="Vandit_Shastri_Resume.pdf"
+                  className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-primary hover:underline"
+                >
+                  <Download size={13} /> Download Full Curriculum Vitae (PDF) <ArrowUpRight size={13} />
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
       </FadeUp>

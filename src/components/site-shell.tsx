@@ -39,13 +39,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </Link>
 
           {/* Desktop Navigation Links — centered */}
-          <nav className="hidden flex-1 items-center justify-center gap-5 md:flex" aria-label="Main navigation">
+          <nav className="hidden flex-1 items-center justify-center gap-3.5 lg:gap-5 xl:gap-6 md:flex" aria-label="Main navigation">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary"
-                activeProps={{ className: "text-xs font-semibold uppercase tracking-wider text-primary border-b-2 border-primary py-1" }}
+                className="whitespace-nowrap text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary"
+                activeProps={{ className: "whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-primary border-b-2 border-primary py-1" }}
               >
                 {link.label}
               </Link>
@@ -54,13 +54,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
           {/* Header Actions — push to right */}
           <div className="flex flex-1 items-center justify-end gap-2">
-            <button
-              onClick={() => setResumeOpen(true)}
-              className="hidden items-center gap-1.5 rounded-full border border-border bg-surface-soft/80 px-3.5 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary/50 hover:bg-card sm:inline-flex"
+            <a
+              href="/vandit-shastri-resume.pdf"
+              download="Vandit_Shastri_Resume.pdf"
+              className="hidden items-center gap-1.5 rounded-full border border-border bg-surface-soft/80 px-3.5 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary/50 hover:bg-card sm:inline-flex whitespace-nowrap"
             >
               <FileText size={13} className="text-primary" />
               <span>Resume / CV</span>
-            </button>
+            </a>
 
             {/* Dark Mode Toggle — desktop only, mobile via hamburger */}
             <button
@@ -76,7 +77,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               )}
             </button>
 
-            <Link to="/contact" className="button-primary text-xs py-2 px-4 shadow-sm">
+            <Link to="/contact" className="button-primary text-xs py-2 px-4 shadow-sm whitespace-nowrap">
               <span>Contact</span>
               <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
@@ -108,15 +109,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </Link>
               ))}
               <div className="pt-4 border-t border-border/80 flex flex-col gap-3">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    setResumeOpen(true);
-                  }}
-                  className="flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-soft py-2.5 text-xs font-medium"
+                <a
+                  href="/vandit-shastri-resume.pdf"
+                  download="Vandit_Shastri_Resume.pdf"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-soft py-2.5 text-xs font-medium text-foreground"
                 >
-                  <FileText size={14} className="text-primary" /> View Resume / CV
-                </button>
+                  <FileText size={14} className="text-primary" /> Download Resume (PDF)
+                </a>
                 <button
                   onClick={toggle}
                   className="flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-soft py-2.5 text-xs font-medium"
@@ -211,12 +211,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 vanditshastri@gmail.com
               </a>
               <div className="pt-2">
-                <button
-                  onClick={() => setResumeOpen(true)}
+                <a
+                  href="/vandit-shastri-resume.pdf"
+                  download="Vandit_Shastri_Resume.pdf"
                   className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary"
                 >
-                  <FileText size={12} className="text-primary" /> View Curriculum Vitae
-                </button>
+                  <FileText size={12} className="text-primary" /> Download Resume (PDF)
+                </a>
               </div>
             </div>
 
