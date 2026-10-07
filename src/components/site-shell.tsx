@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { InteractiveTerminal } from "@/components/terminal-modal";
 import { ResumeModal } from "@/components/resume-modal";
 import { useTheme } from "@/hooks/use-theme";
+import { RESUME_URL } from "@/lib/constants";
 
 const links = [
   { to: "/", label: "Home" },
@@ -55,7 +56,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           {/* Header Actions — push to right */}
           <div className="flex flex-1 items-center justify-end gap-2">
             <a
-              href="/vandit-shastri-resume.pdf"
+              href={RESUME_URL}
               download="Vandit_Shastri_Resume.pdf"
               className="hidden items-center gap-1.5 rounded-full border border-border bg-surface-soft/80 px-3.5 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary/50 hover:bg-card sm:inline-flex whitespace-nowrap"
             >
@@ -110,7 +111,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               ))}
               <div className="pt-4 border-t border-border/80 flex flex-col gap-3">
                 <a
-                  href="/vandit-shastri-resume.pdf"
+                  href={RESUME_URL}
                   download="Vandit_Shastri_Resume.pdf"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-soft py-2.5 text-xs font-medium text-foreground"
@@ -212,7 +213,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               </a>
               <div className="pt-2">
                 <a
-                  href="/vandit-shastri-resume.pdf"
+                  href={RESUME_URL}
                   download="Vandit_Shastri_Resume.pdf"
                   className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary"
                 >

@@ -28,10 +28,15 @@ async function main() {
   }
   fs.mkdirSync(outputDir, { recursive: true });
 
-  // 2. Copy all public assets (.output/public -> dist)
+  // 2. Copy all public assets (.output/public and root public -> dist)
   if (fs.existsSync(publicDir)) {
     fs.cpSync(publicDir, outputDir, { recursive: true });
     console.log("✓ Copied static assets from .output/public to dist");
+  }
+  const rootPublicDir = path.join(rootDir, "public");
+  if (fs.existsSync(rootPublicDir)) {
+    fs.cpSync(rootPublicDir, outputDir, { recursive: true });
+    console.log("✓ Copied static assets from root public/ to dist");
   }
 
   // 3. Create .nojekyll for GitHub Pages
@@ -45,6 +50,8 @@ async function main() {
     processed = processed.replace(/src="\/assets\//g, `src="${basePath}assets/`);
     processed = processed.replace(/"\/assets\//g, `"${basePath}assets/`);
     processed = processed.replace(/href="\/favicon\.ico"/g, `href="${basePath}favicon.ico"`);
+    processed = processed.replace(/href="\/resume\.pdf"/g, `href="${basePath}resume.pdf"`);
+    processed = processed.replace(/src="\/vandit-photo\.jpg"/g, `src="${basePath}vandit-photo.jpg"`);
     
     // Prefix internal navigation links
     processed = processed.replace(/href="\/(about|projects|achievements|contact)"/g, `href="${basePath}$1"`);

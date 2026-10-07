@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SiteShell, PageIntro } from "@/components/site-shell";
 import { ResumeModal } from "@/components/resume-modal";
 import { PageTransition, FadeUp, StaggerParent, StaggerItem } from "@/components/motion";
+import { RESUME_URL } from "@/lib/constants";
 
 export const Route = createFileRoute("/achievements")({
   head: () => ({
@@ -179,7 +180,7 @@ function AchievementsPage() {
               </h2>
             </div>
             <a
-              href="/vandit-shastri-resume.pdf"
+              href={RESUME_URL}
               download="Vandit_Shastri_Resume.pdf"
               className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
             >

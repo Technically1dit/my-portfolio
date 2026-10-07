@@ -4,6 +4,8 @@ import { ArrowRight, ArrowUpRight, BookOpen, Brain, Code, Cpu, Download, FileCod
 import { useState } from "react";
 import { ResumeModal } from "@/components/resume-modal";
 import { PageTransition, FadeUp, StaggerParent, StaggerItem } from "@/components/motion";
+import vanditPhoto from "@/assets/vandit-photo.jpg";
+import { RESUME_URL } from "@/lib/constants";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -76,7 +78,7 @@ function AboutPage() {
             <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-card shadow-xl group">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-soft">
                 <img
-                  src="/vandit-photo.jpg"
+                  src={vanditPhoto}
                   alt="Vandit Shastri — Machine Learning Engineer"
                   className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   loading="eager"
@@ -105,7 +107,7 @@ function AboutPage() {
             {/* Quick Actions */}
             <div className="flex flex-wrap gap-3">
               <a
-                href="/vandit-shastri-resume.pdf"
+                href={RESUME_URL}
                 download="Vandit_Shastri_Resume.pdf"
                 className="button-primary flex-1 justify-center text-xs py-2.5"
               >
@@ -163,7 +165,7 @@ function AboutPage() {
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <a
-                  href="/vandit-shastri-resume.pdf"
+                  href={RESUME_URL}
                   download="Vandit_Shastri_Resume.pdf"
                   className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-primary hover:underline"
                 >

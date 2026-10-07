@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { X, Download, Printer, Copy, Check, ExternalLink, Briefcase, GraduationCap, Award, Code2, Sparkles, MapPin, Mail, Github, Linkedin } from "lucide-react";
+import { RESUME_URL } from "@/lib/constants";
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -59,7 +60,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
 
           <div className="flex items-center gap-2">
             <a
-              href="/vandit-shastri-resume.pdf"
+              href={RESUME_URL}
               download="Vandit_Shastri_Resume.pdf"
               className="inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-3 py-1.5 font-mono text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
               title="Download Resume PDF"
@@ -241,7 +242,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         {/* Footer actions */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/80 bg-surface-soft px-6 py-3.5">
           <a
-            href="/vandit-shastri-resume.pdf"
+            href={RESUME_URL}
             download="Vandit_Shastri_Resume.pdf"
             className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-primary hover:underline"
           >

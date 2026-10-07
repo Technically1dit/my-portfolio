@@ -7,6 +7,7 @@ import { SiteShell } from "@/components/site-shell";
 import { ScrollStory } from "@/components/scroll-story";
 import { NeuralCanvas } from "@/components/neural-canvas";
 import { ResumeModal } from "@/components/resume-modal";
+import { RESUME_URL } from "@/lib/constants";
 import frame1 from "@/assets/scroll-01.jpg";
 
 export const Route = createFileRoute("/")({
@@ -124,7 +125,7 @@ function Index() {
                 <ArrowRight size={15} />
               </Link>
               <a
-                href="/vandit-shastri-resume.pdf"
+                href={RESUME_URL}
                 download="Vandit_Shastri_Resume.pdf"
                 className="button-secondary"
               >
@@ -384,7 +385,7 @@ function Index() {
             <ArrowUpRight size={15} />
           </Link>
           <a
-            href="/vandit-shastri-resume.pdf"
+            href={RESUME_URL}
             download="Vandit_Shastri_Resume.pdf"
             className="button-secondary"
           >
