@@ -7,9 +7,10 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  vite: {
+    base: process.env.BASE_PATH || "/vandit-portfolio/",
+  },
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
     prerender: {
       routes: ["/", "/about", "/projects", "/achievements", "/contact"],
@@ -17,4 +18,5 @@ export default defineConfig({
     },
   },
 });
+
 

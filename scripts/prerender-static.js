@@ -58,7 +58,8 @@ async function main() {
   const handler = serverModule.default?.fetch ? serverModule.default : serverModule;
 
   for (const route of routes) {
-    const url = `https://vandit.portfolio${route}`;
+    const routeSubpath = route === "/" ? "" : route;
+    const url = `https://vandit.portfolio${basePath.replace(/\/$/, "")}${routeSubpath || "/"}`;
     const req = new Request(url, {
       headers: {
         "Accept": "text/html,application/xhtml+xml,application/xml",
@@ -86,7 +87,7 @@ async function main() {
       }
 
       fs.writeFileSync(targetFile, html, "utf-8");
-      console.log(`✓ Rendered route: ${route} -> ${path.relative(rootDir, targetFile)}`);
+      console.log(`✓ Rendered route: ${route} (${res.status}) -> ${path.relative(rootDir, targetFile)} (${html.length} bytes)`);
 
       // If root, also make it 404.html for GitHub Pages SPA fallback
       if (route === "/") {
