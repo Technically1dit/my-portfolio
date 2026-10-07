@@ -17,8 +17,10 @@ const routes = [
   "/contact",
 ];
 
+const basePath = process.env.BASE_PATH || "/vandit-portfolio/";
+
 async function main() {
-  console.log("Starting static HTML export for GitHub Pages...");
+  console.log(`Starting static HTML export for GitHub Pages (basePath: ${basePath})...`);
 
   // 1. Ensure dist directory exists
   if (fs.existsSync(outputDir)) {
@@ -35,6 +37,21 @@ async function main() {
   // 3. Create .nojekyll for GitHub Pages
   fs.writeFileSync(path.join(outputDir, ".nojekyll"), "");
   console.log("✓ Created .nojekyll");
+
+  // Helper to adjust paths for GitHub Pages subpath hosting
+  const fixPaths = (html) => {
+    // Prefix /assets/ with basePath
+    let processed = html.replace(/href="\/assets\//g, `href="${basePath}assets/`);
+    processed = processed.replace(/src="\/assets\//g, `src="${basePath}assets/`);
+    processed = processed.replace(/"\/assets\//g, `"${basePath}assets/`);
+    processed = processed.replace(/href="\/favicon\.ico"/g, `href="${basePath}favicon.ico"`);
+    
+    // Prefix internal navigation links
+    processed = processed.replace(/href="\/(about|projects|achievements|contact)"/g, `href="${basePath}$1"`);
+    processed = processed.replace(/href="\/"(?=[\s>])/g, `href="${basePath}"`);
+
+    return processed;
+  };
 
   // 4. Import the compiled server entry to render each route
   const serverModule = await import(`file://${serverEntryPath.replace(/\\/g, "/")}`);
@@ -56,7 +73,8 @@ async function main() {
         passThroughOnException: () => {},
       };
       const res = await handler.fetch(req, mockEnv, mockCtx);
-      const html = await res.text();
+      let html = await res.text();
+      html = fixPaths(html);
 
       let targetFile;
       if (route === "/") {
@@ -80,6 +98,23 @@ async function main() {
     }
   }
 
+  // 5. Also fix asset chunk references inside dist/assets js files if any
+  const distAssetsDir = path.join(outputDir, "assets");
+  if (fs.existsSync(distAssetsDir)) {
+    const assetFiles = fs.readdirSync(distAssetsDir);
+    for (const file of assetFiles) {
+      if (file.endsWith(".js") || file.endsWith(".mjs")) {
+        const filePath = path.join(distAssetsDir, file);
+        let content = fs.readFileSync(filePath, "utf-8");
+        if (content.includes('"/assets/')) {
+          content = content.replace(/"\/assets\//g, `"${basePath}assets/`);
+          fs.writeFileSync(filePath, content, "utf-8");
+        }
+      }
+    }
+    console.log("✓ Verified dist/assets bundle chunk paths");
+  }
+
   console.log("\n✨ Static export completed successfully! Output directory: dist/");
 }
 
@@ -87,3 +122,4 @@ main().catch((err) => {
   console.error("Fatal prerender error:", err);
   process.exit(1);
 });
+
