@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep major portfolio content on separate TanStack routes so admissions reviewers can deep-link and search each story.
+- Keep portfolio claims sourced from the uploaded profile or public accounts; never invent project metrics, awards, or credentials.
