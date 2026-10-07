@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Menu, X, FileText, Github, Linkedin, Mail, Sparkles } from "lucide-react";
+import { ArrowUpRight, Menu, X, FileText, Github, Linkedin, Mail, Sparkles, Moon, Sun } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { InteractiveTerminal } from "@/components/terminal-modal";
 import { ResumeModal } from "@/components/resume-modal";
+import { useTheme } from "@/hooks/use-theme";
 
 const links = [
   { to: "/", label: "Home" },
@@ -15,6 +16,7 @@ const links = [
 export function SiteShell({ children }: { children: ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   return (
     <div className="relative min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
@@ -60,6 +62,20 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <span>Resume / CV</span>
             </button>
 
+            {/* Dark Mode Toggle */}
+            <button
+              id="theme-toggle"
+              onClick={toggle}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface-soft text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:bg-card"
+            >
+              {theme === "dark" ? (
+                <Sun size={16} className="transition-transform duration-300 rotate-0" />
+              ) : (
+                <Moon size={16} className="transition-transform duration-300 rotate-0" />
+              )}
+            </button>
+
             <Link to="/contact" className="button-primary text-xs py-2 px-4 shadow-sm">
               <span>Contact</span>
               <ArrowUpRight size={14} aria-hidden="true" />
@@ -100,6 +116,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   className="flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-soft py-2.5 text-xs font-medium"
                 >
                   <FileText size={14} className="text-primary" /> View Resume / CV
+                </button>
+                <button
+                  onClick={toggle}
+                  className="flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-soft py-2.5 text-xs font-medium"
+                >
+                  {theme === "dark" ? (
+                    <><Sun size={14} className="text-accent" /> Switch to Light Mode</>
+                  ) : (
+                    <><Moon size={14} className="text-primary" /> Switch to Dark Mode</>
+                  )}
                 </button>
               </div>
             </nav>

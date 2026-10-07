@@ -152,6 +152,7 @@
   }
 
   html { scroll-behavior: smooth; }
+  html { transition: background-color 0.3s ease, color 0.3s ease; }
   ::selection { background: color-mix(in oklab, var(--primary) 22%, transparent); }
 
   /* ── Thin themed scrollbar ─────────────────────────────────── */
