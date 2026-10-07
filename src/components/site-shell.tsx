@@ -62,17 +62,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <span>Resume / CV</span>
             </button>
 
-            {/* Dark Mode Toggle */}
+            {/* Dark Mode Toggle — desktop only, mobile via hamburger */}
             <button
               id="theme-toggle"
               onClick={toggle}
               aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface-soft text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:bg-card"
+              className="hidden md:flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface-soft text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:bg-card"
             >
               {theme === "dark" ? (
-                <Sun size={16} className="transition-transform duration-300 rotate-0" />
+                <Sun size={16} />
               ) : (
-                <Moon size={16} className="transition-transform duration-300 rotate-0" />
+                <Moon size={16} />
               )}
             </button>
 

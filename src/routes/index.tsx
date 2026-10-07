@@ -78,7 +78,7 @@ function Index() {
       {/* Hero Section */}
       <section className="relative overflow-hidden hero-wash">
         <NeuralCanvas />
-        <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-[1.1fr_.9fr]">
+        <div className="hero-section-inner relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-[1.1fr_.9fr]">
           
           {/* Left Hero Column */}
           <motion.div
