@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell, PageIntro } from "@/components/site-shell";
 import { GithubProjectsExplorer } from "@/components/github-explorer";
 import { Code2, Github, Sparkles, Terminal } from "lucide-react";
+import { PageTransition, FadeUp } from "@/components/motion";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/projects")({
 function ProjectsPage() {
   return (
     <SiteShell>
+      <PageTransition>
       <PageIntro
         eyebrow="Inspectable Repositories & Systems"
         title="Public code, crafted with rigor."
@@ -28,11 +30,14 @@ function ProjectsPage() {
       />
 
       {/* Main GitHub Explorer Component */}
+      <FadeUp>
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
         <GithubProjectsExplorer />
       </section>
+      </FadeUp>
 
       {/* Professional AI Architecture Note */}
+      <FadeUp>
       <section className="border-y border-border/80 bg-surface-soft/60 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] items-center">
@@ -70,6 +75,8 @@ function ProjectsPage() {
           </div>
         </div>
       </section>
+      </FadeUp>
+      </PageTransition>
     </SiteShell>
   );
 }

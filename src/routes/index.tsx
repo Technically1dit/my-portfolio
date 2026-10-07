@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Download, Github, Linkedin, Sparkles, GraduationCap, Cpu, Code2, Bot, Layers, Terminal, CheckCircle2, FileText } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
+import { FadeUp, StaggerParent, StaggerItem } from "@/components/motion";
 import { SiteShell } from "@/components/site-shell";
 import { ScrollStory } from "@/components/scroll-story";
 import { NeuralCanvas } from "@/components/neural-canvas";
@@ -211,6 +212,7 @@ function Index() {
       <ScrollStory />
 
       {/* Core Engineering Pillars */}
+      <FadeUp>
       <section className="border-b border-border/80 bg-background py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
@@ -223,11 +225,11 @@ function Index() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerParent className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map((item) => {
               const Icon = item.icon;
               return (
-                <div
+                <StaggerItem
                   key={item.title}
                   className="group rounded-2xl border border-border bg-card/70 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
                 >
@@ -240,14 +242,16 @@ function Index() {
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                     {item.desc}
                   </p>
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerParent>
         </div>
       </section>
+      </FadeUp>
 
       {/* Selected Work & GitHub Repositories */}
+      <FadeUp>
       <section className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
@@ -261,39 +265,42 @@ function Index() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <StaggerParent className="mt-12 grid gap-6 lg:grid-cols-3">
           {featuredProjects.map((project, index) => (
-            <a
-              key={project.name}
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              className="project-card group flex flex-col justify-between"
-            >
-              <div>
-                <div className={`project-visual project-visual-${index + 1}`}>
-                  <span className="font-mono text-lg font-semibold">0{index + 1}</span>
-                  <ArrowUpRight size={20} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <StaggerItem key={project.name}>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className="project-card group flex flex-col justify-between"
+              >
+                <div>
+                  <div className={`project-visual project-visual-${index + 1}`}>
+                    <span className="font-mono text-lg font-semibold">0{index + 1}</span>
+                    <ArrowUpRight size={20} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </div>
+                  <div className="p-6">
+                    <p className="eyebrow">{project.type}</p>
+                    <h3 className="mt-3 font-display text-2xl font-medium text-foreground group-hover:text-primary transition-colors">
+                      {project.name}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                      {project.copy}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <p className="eyebrow">{project.type}</p>
-                  <h3 className="mt-3 font-display text-2xl font-medium text-foreground group-hover:text-primary transition-colors">
-                    {project.name}
-                  </h3>
-                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                    {project.copy}
-                  </p>
+                <div className="p-6 pt-0">
+                  <p className="font-mono text-xs text-primary">{project.stack}</p>
                 </div>
-              </div>
-              <div className="p-6 pt-0">
-                <p className="font-mono text-xs text-primary">{project.stack}</p>
-              </div>
-            </a>
+              </a>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerParent>
       </section>
+      </FadeUp>
 
       {/* Verified Timeline & Experience */}
+      <FadeUp>
       <section className="border-y border-border/80 bg-surface-soft/60 py-20 sm:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[.9fr_1.1fr]">
           <div>
@@ -356,8 +363,10 @@ function Index() {
           </div>
         </div>
       </section>
+      </FadeUp>
 
       {/* Connect CTA Banner */}
+      <FadeUp>
       <section className="relative overflow-hidden mx-auto max-w-4xl px-6 py-20 text-center sm:py-28">
         <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 font-mono text-xs font-semibold text-accent">
           <Sparkles size={14} /> Open for Conversations &amp; Engineering Collaborations
@@ -382,6 +391,7 @@ function Index() {
           </button>
         </div>
       </section>
+      </FadeUp>
 
       <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </SiteShell>

@@ -3,6 +3,7 @@ import { SiteShell, PageIntro } from "@/components/site-shell";
 import { ArrowRight, ArrowUpRight, BookOpen, Brain, Code, Cpu, Download, FileCode, GraduationCap, HeartHandshake, Sparkles, FileText } from "lucide-react";
 import { useState } from "react";
 import { ResumeModal } from "@/components/resume-modal";
+import { PageTransition, FadeUp, StaggerParent, StaggerItem } from "@/components/motion";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -57,6 +58,7 @@ function AboutPage() {
 
   return (
     <SiteShell>
+      <PageTransition>
       <PageIntro
         eyebrow="My Journey & Engineering Philosophy"
         title="Technical rigor, with genuine curiosity."
@@ -65,6 +67,7 @@ function AboutPage() {
       />
 
       {/* Main Narrative & Quote */}
+      <FadeUp>
       <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-2 lg:py-20">
         <div className="prose-panel space-y-5">
           <div className="flex items-center gap-2">
@@ -114,6 +117,7 @@ function AboutPage() {
           </div>
         </div>
       </section>
+      </FadeUp>
 
       {/* Research Interests */}
       <section className="border-t border-border/80 bg-surface-soft/70 py-16 sm:py-24">
@@ -130,9 +134,9 @@ function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <StaggerParent className="mt-10 grid gap-6 sm:grid-cols-2">
             {researchInterests.map((item, idx) => (
-              <div
+              <StaggerItem
                 key={item.title}
                 className="rounded-2xl border border-border bg-card p-6 shadow-2xs transition-all hover:border-primary/40 hover:shadow-md"
               >
@@ -143,9 +147,9 @@ function AboutPage() {
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
                   {item.desc}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
 
@@ -162,9 +166,9 @@ function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-3">
+          <StaggerParent className="mt-10 grid gap-8 md:grid-cols-3">
             {skillCategories.map((group) => (
-              <div key={group.category} className="rounded-2xl border border-border bg-card/80 p-6 shadow-2xs">
+              <StaggerItem key={group.category} className="rounded-2xl border border-border bg-card/80 p-6 shadow-2xs">
                 <p className="font-mono text-xs font-semibold text-primary uppercase tracking-wider">
                   {group.category}
                 </p>
@@ -178,13 +182,14 @@ function AboutPage() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
 
       {/* Bottom Connect CTA */}
+      <FadeUp>
       <section className="mx-auto max-w-3xl px-6 py-16 text-center sm:py-24">
         <p className="eyebrow">Let's Connect</p>
         <h2 className="mt-4 font-display text-3xl font-medium sm:text-5xl text-foreground">
@@ -204,8 +209,10 @@ function AboutPage() {
           </Link>
         </div>
       </section>
+      </FadeUp>
 
       <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
+      </PageTransition>
     </SiteShell>
   );
 }

@@ -3,6 +3,7 @@ import { Award, BriefcaseBusiness, GraduationCap, CheckCircle2, Download, FileCh
 import { useState } from "react";
 import { SiteShell, PageIntro } from "@/components/site-shell";
 import { ResumeModal } from "@/components/resume-modal";
+import { PageTransition, FadeUp, StaggerParent, StaggerItem } from "@/components/motion";
 
 export const Route = createFileRoute("/achievements")({
   head: () => ({
@@ -59,6 +60,7 @@ function AchievementsPage() {
 
   return (
     <SiteShell>
+      <PageTransition>
       <PageIntro
         eyebrow="Experience & Qualifications"
         title="Experience, backed by practical results."
@@ -67,8 +69,9 @@ function AchievementsPage() {
       />
 
       {/* Main Experience & Education Cards */}
+      <FadeUp>
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
-        <div className="grid gap-6 md:grid-cols-3">
+        <StaggerParent className="grid gap-6 md:grid-cols-3">
           
           {/* Card 1: LJ University */}
           <article className="record-card flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/40 hover:shadow-lg">
@@ -160,10 +163,12 @@ function AchievementsPage() {
             </div>
           </article>
 
-        </div>
+        </StaggerParent>
       </section>
+      </FadeUp>
 
       {/* Verified Certificates */}
+      <FadeUp>
       <section className="border-t border-border/80 bg-surface-soft/60 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
@@ -215,8 +220,10 @@ function AchievementsPage() {
           </div>
         </div>
       </section>
+      </FadeUp>
 
       {/* Undergraduate Coursework Highlights */}
+      <FadeUp>
       <section className="border-b border-border/80 bg-background py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
@@ -229,9 +236,9 @@ function AchievementsPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <StaggerParent className="mt-10 grid gap-6 sm:grid-cols-2">
             {academicHighlights.map((course) => (
-              <div
+              <StaggerItem
                 key={course.title}
                 className="rounded-xl border border-border bg-card/60 p-5 shadow-2xs"
               >
@@ -241,13 +248,15 @@ function AchievementsPage() {
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                   {course.desc}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
+      </FadeUp>
 
       <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
+      </PageTransition>
     </SiteShell>
   );
 }

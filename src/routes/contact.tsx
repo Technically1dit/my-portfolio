@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Check, Copy, Github, Linkedin, Mail, MapPin, Send, Sparkles, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { SiteShell, PageIntro } from "@/components/site-shell";
+import { PageTransition, FadeUp, StaggerParent, StaggerItem } from "@/components/motion";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -91,6 +92,7 @@ function ContactPage() {
 
   return (
     <SiteShell>
+      <PageTransition>
       <PageIntro
         eyebrow="Communication & Inquiries"
         title="A good conversation is a great prototype."
@@ -98,6 +100,7 @@ function ContactPage() {
         highlight="Available for Engineering Inquiries & Discussions"
       />
 
+      <FadeUp>
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           
@@ -129,33 +132,34 @@ function ContactPage() {
             </div>
 
             {/* Contact Rows */}
-            <div className="space-y-3">
+            <StaggerParent className="space-y-3">
               {contacts.map(({ icon: Icon, label, value, href, desc }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noreferrer" : undefined}
-                  className="contact-row group flex items-start gap-4 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
-                >
-                  <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-soft text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon size={18} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className="block font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                      {label}
-                    </span>
-                    <strong className="block font-display text-base font-medium text-foreground truncate mt-0.5">
-                      {value}
-                    </strong>
-                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                      {desc}
-                    </p>
-                  </div>
-                  <ArrowUpRight size={18} className="text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
-                </a>
+                <StaggerItem key={label}>
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noreferrer" : undefined}
+                    className="contact-row group flex items-start gap-4 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                  >
+                    <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-soft text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon size={18} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                        {label}
+                      </span>
+                      <strong className="block font-display text-base font-medium text-foreground truncate mt-0.5">
+                        {value}
+                      </strong>
+                      <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                        {desc}
+                      </p>
+                    </div>
+                    <ArrowUpRight size={18} className="text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
+                  </a>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerParent>
           </div>
 
           {/* Right Column: Interactive Inquiry Form */}
@@ -290,6 +294,8 @@ function ContactPage() {
 
         </div>
       </section>
+      </FadeUp>
+      </PageTransition>
     </SiteShell>
   );
 }
