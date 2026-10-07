@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Menu, X, FileText, Github, Linkedin, Mail, Sparkles, Terminal } from "lucide-react";
+import { ArrowUpRight, Menu, X, FileText, Github, Linkedin, Mail, Sparkles } from "lucide-react";
 import { useState, type ReactNode } from "react";
-import profileAsset from "@/assets/vandit-profile.pdf.asset.json";
 import { InteractiveTerminal } from "@/components/terminal-modal";
+import { ResumeModal } from "@/components/resume-modal";
 
 const links = [
   { to: "/", label: "Home" },
@@ -14,6 +14,7 @@ const links = [
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
@@ -21,7 +22,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-border/80 bg-background/85 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
           {/* Brand Logo */}
-          <Link to="/" className="group flex items-center gap-2">
+          <Link to="/" className="group flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform group-hover:scale-105">
               <span className="font-mono text-sm font-bold">VS</span>
             </div>
@@ -30,7 +31,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 Vandit Shastri<span className="text-accent">.</span>
               </span>
               <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground hidden sm:block">
-                ML Engineer · Rootle
+                Machine Learning Engineer
               </span>
             </div>
           </Link>
@@ -51,15 +52,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
           {/* Header Actions */}
           <div className="flex items-center gap-3">
-            <a
-              href={profileAsset.url}
-              target="_blank"
-              rel="noreferrer"
+            <button
+              onClick={() => setResumeOpen(true)}
               className="hidden items-center gap-1.5 rounded-full border border-border bg-surface-soft/80 px-3.5 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary/50 hover:bg-card sm:inline-flex"
             >
               <FileText size={13} className="text-primary" />
               <span>Resume / CV</span>
-            </a>
+            </button>
 
             <Link to="/contact" className="button-primary text-xs py-2 px-4 shadow-sm">
               <span>Contact</span>
@@ -93,14 +92,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </Link>
               ))}
               <div className="pt-4 border-t border-border/80 flex flex-col gap-3">
-                <a
-                  href={profileAsset.url}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setResumeOpen(true);
+                  }}
                   className="flex items-center justify-center gap-2 rounded-lg border border-border bg-surface-soft py-2.5 text-xs font-medium"
                 >
-                  <FileText size={14} /> Download CV / Profile
-                </a>
+                  <FileText size={14} className="text-primary" /> View Resume / CV
+                </button>
               </div>
             </nav>
           </div>
@@ -121,7 +121,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 Vandit Shastri<span className="text-accent">.</span>
               </Link>
               <p className="text-xs leading-relaxed text-muted-foreground">
-                Machine Learning Engineer at Rootle & B.Tech Computer Science graduate from LJ University. Focused on conversational agents, scalable AI pipelines, and higher studies research.
+                Machine Learning Engineer focused on conversational AI agents, scalable inference pipelines, and high-performance Python systems.
               </p>
               <div className="flex items-center gap-3 pt-2">
                 <a
@@ -154,26 +154,29 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
             {/* Column 2: Navigation */}
             <div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-primary">Explore</p>
+              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-primary">Navigation</p>
               <ul className="mt-4 space-y-2 text-xs">
-                <li><Link to="/about" className="text-muted-foreground hover:text-foreground">About & Statement of Purpose</Link></li>
+                <li><Link to="/about" className="text-muted-foreground hover:text-foreground">About & Research Philosophy</Link></li>
                 <li><Link to="/projects" className="text-muted-foreground hover:text-foreground">Projects & Code Repositories</Link></li>
                 <li><Link to="/achievements" className="text-muted-foreground hover:text-foreground">Academics & Experience</Link></li>
-                <li><Link to="/contact" className="text-muted-foreground hover:text-foreground">Admissions & Contact</Link></li>
+                <li><Link to="/contact" className="text-muted-foreground hover:text-foreground">Contact & Inquiries</Link></li>
               </ul>
             </div>
 
-            {/* Column 3: Admissions & Higher Studies */}
+            {/* Column 3: Core Areas */}
             <div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-accent">Higher Studies</p>
-              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Seeking Graduate / Master's admissions in Computer Science & AI at world-class global universities. Deep-links and verified credentials provided for committee review.
-              </p>
+              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-accent">Core Focus</p>
+              <ul className="mt-4 space-y-2 text-xs text-muted-foreground">
+                <li>Conversational AI & Agentic Systems</li>
+                <li>High-Performance Asynchronous Python</li>
+                <li>RAG & Vector Embeddings</li>
+                <li>Applied Machine Learning & EDA</li>
+              </ul>
             </div>
 
             {/* Column 4: Quick Action */}
             <div className="space-y-3">
-              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-primary">Get in Touch</p>
+              <p className="font-mono text-xs font-semibold uppercase tracking-wider text-primary">Connect</p>
               <p className="text-xs text-muted-foreground">Ahmedabad, Gujarat, India</p>
               <a
                 href="mailto:vanditshastri@gmail.com"
@@ -182,14 +185,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 vanditshastri@gmail.com
               </a>
               <div className="pt-2">
-                <a
-                  href={profileAsset.url}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  onClick={() => setResumeOpen(true)}
                   className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary"
                 >
-                  <FileText size={12} className="text-primary" /> View Verified Profile PDF
-                </a>
+                  <FileText size={12} className="text-primary" /> View Curriculum Vitae
+                </button>
               </div>
             </div>
 
@@ -198,12 +199,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
           {/* Bottom Row */}
           <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/80 pt-8 text-xs text-muted-foreground sm:flex-row">
             <span>© {new Date().getFullYear()} Vandit Shastri. All rights reserved.</span>
-            <span className="font-mono text-[11px] flex items-center gap-1">
-              <Sparkles size={11} className="text-accent" /> Built with TanStack Router, React 19 & Tailwind
+            <span className="font-mono text-[11px] flex items-center gap-1.5 text-muted-foreground">
+              <Sparkles size={11} className="text-accent" /> Designed &amp; Engineered with Technical Rigor
             </span>
           </div>
         </div>
       </footer>
+
+      {/* Interactive Resume Modal */}
+      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
 
       {/* Interactive AI Shell Terminal */}
       <InteractiveTerminal />

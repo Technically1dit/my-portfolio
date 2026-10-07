@@ -23,7 +23,7 @@ function ProjectsPage() {
       <PageIntro
         eyebrow="Inspectable Repositories & Systems"
         title="Public code, crafted with rigor."
-        copy="A transparent look at Vandit's engineering output. Every project is open to direct inspection on GitHub so admissions reviewers and technical leads can assess code quality, system design, and practical execution."
+        copy="A transparent look at my engineering output. Every project is open to direct inspection on GitHub so collaborators and engineering leads can assess code structure, system design, and execution."
         highlight="Synced with GitHub API @Technically1dit"
       />
 
@@ -44,7 +44,7 @@ function ProjectsPage() {
                 Beyond open-source: Production AI at Rootle.
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                While public GitHub repositories demonstrate independent coding initiative and experimentation, Vandit's core day-to-day engineering at Rootle involves proprietary multi-agent conversational pipelines, asynchronous token routing, and secure vector databases.
+                While my public repositories demonstrate independent initiative and experimentation, my day-to-day engineering at Rootle involves proprietary multi-agent conversational pipelines, asynchronous token routing, and secure vector databases.
               </p>
             </div>
 

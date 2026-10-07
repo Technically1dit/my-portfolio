@@ -63,15 +63,15 @@ const frames: StoryFrame[] = [
   {
     id: "04",
     image: frame4,
-    title: "The Academic & Global Research Horizon",
-    subtitle: "Prepared for Higher Studies Abroad",
-    note: "Taking foundational engineering rigor, curiosity, and a collaborative spirit into graduate studies (MS in CS/AI) to push the boundaries of scalable artificial intelligence.",
+    title: "Continuous Research & Scalable Frontiers",
+    subtitle: "Expanding Machine Learning Horizons",
+    note: "Deepening theoretical understanding, exploring multi-modal agent reasoning, and building scalable artificial intelligence systems for tomorrow's complex workflows.",
     telemetry: {
-      status: "RESEARCH_READINESS_NOMINAL",
-      layer: "Graduate Research & Higher Studies",
-      metric: "Admission Deep-Link: Active",
+      status: "CONTINUOUS_RESEARCH_ACTIVE",
+      layer: "Scalable Systems & Innovation",
+      metric: "State: Ready for Scale",
     },
-    tags: ["Master's in CS / AI", "Foreign University Ambition", "Scalable AI Research"],
+    tags: ["Applied Machine Learning", "Advanced AI Systems", "Continuous Innovation"],
   },
 ];
 

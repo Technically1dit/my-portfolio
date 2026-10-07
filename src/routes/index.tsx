@@ -1,18 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Download, Github, Linkedin, Sparkles, GraduationCap, Cpu, Code2, Bot, Layers, Terminal, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download, Github, Linkedin, Sparkles, GraduationCap, Cpu, Code2, Bot, Layers, Terminal, CheckCircle2, FileText } from "lucide-react";
+import { useState } from "react";
+import { motion } from "motion/react";
 import { SiteShell } from "@/components/site-shell";
 import { ScrollStory } from "@/components/scroll-story";
 import { NeuralCanvas } from "@/components/neural-canvas";
-import profileAsset from "@/assets/vandit-profile.pdf.asset.json";
+import { ResumeModal } from "@/components/resume-modal";
 import frame1 from "@/assets/scroll-01.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vandit Shastri — Machine Learning Engineer & CS Graduate" },
-      { name: "description", content: "Portfolio and academic dossier of Vandit Shastri: Machine Learning Engineer at Rootle, BTech CS graduate from LJ University, building scalable conversational agents, high-performance Python pipelines, and preparing for higher studies abroad." },
-      { property: "og:title", content: "Vandit Shastri — Machine Learning Engineer & Academic Dossier" },
-      { property: "og:description", content: "Exploring conversational intelligence, machine learning systems, and graduate research opportunities." },
+      { title: "Vandit Shastri — Machine Learning Engineer" },
+      { name: "description", content: "Portfolio and engineering dossier of Vandit Shastri: Machine Learning Engineer building scalable conversational agents, high-performance Python pipelines, and machine learning systems." },
+      { property: "og:title", content: "Vandit Shastri — Machine Learning Engineer" },
+      { property: "og:description", content: "Exploring conversational intelligence, machine learning systems, and high-performance engineering." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -62,12 +64,14 @@ const pillars = [
   },
   {
     icon: GraduationCap,
-    title: "Higher Studies & Research",
-    desc: "Dedicated to pursuing graduate research (Master's in CS/AI) at international universities, bridging theoretical depth with production scalability.",
+    title: "Academics & Continuous Research",
+    desc: "B.Tech in Computer Science from LJ University, dedicated to deepening theoretical understanding and exploring modern research in AI.",
   },
 ];
 
 function Index() {
+  const [resumeOpen, setResumeOpen] = useState(false);
+
   return (
     <SiteShell>
       {/* Hero Section */}
@@ -76,7 +80,11 @@ function Index() {
         <div className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-[1.1fr_.9fr]">
           
           {/* Left Hero Column */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="flex flex-wrap items-center gap-2">
               <span className="eyebrow-pill flex items-center gap-1.5">
                 <Sparkles size={11} className="text-accent" />
@@ -92,18 +100,18 @@ function Index() {
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Hi, I’m <strong>Vandit Shastri</strong>. I engineer scalable AI systems, specialized conversational agents, and high-performance Python pipelines—grounded in technical rigor, continuous iteration, and a jolly, collaborative spirit.
+              Hi, I’m <strong>Vandit Shastri</strong>. I engineer scalable AI systems, specialized conversational agents, and high-performance Python pipelines—grounded in technical rigor, clean design, and a collaborative spirit.
             </p>
 
-            {/* Higher Studies Badge */}
+            {/* Core Focus Badge */}
             <div className="mt-6 flex items-start gap-3 rounded-xl border border-border/80 bg-card/70 p-3.5 backdrop-blur-md">
               <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/15 text-accent">
-                <GraduationCap size={16} />
+                <Bot size={16} />
               </div>
               <div className="text-xs">
-                <span className="font-semibold text-foreground">Prospective Graduate Student (MS in AI / CS):</span>
+                <span className="font-semibold text-foreground">Current Focus & Research Interests:</span>
                 <p className="mt-0.5 text-muted-foreground leading-relaxed">
-                  Prepared for higher studies abroad. Admissions reviewers are invited to deep-link across academic history, verified credentials, and code repositories.
+                  Autonomous agent reasoning, low-latency streaming pipelines, RAG retrieval architectures, and high-throughput Python backends.
                 </p>
               </div>
             </div>
@@ -111,18 +119,16 @@ function Index() {
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link to="/projects" className="button-primary">
-                <span>Explore Projects & GitHub</span>
+                <span>Explore My Projects</span>
                 <ArrowRight size={15} />
               </Link>
-              <a
-                href={profileAsset.url}
-                target="_blank"
-                rel="noreferrer"
+              <button
+                onClick={() => setResumeOpen(true)}
                 className="button-secondary"
               >
-                <span>Download Profile CV</span>
-                <Download size={15} />
-              </a>
+                <FileText size={15} className="text-primary" />
+                <span>View My Resume</span>
+              </button>
             </div>
 
             {/* Social Links */}
@@ -145,14 +151,19 @@ function Index() {
                 <Linkedin size={16} /> LinkedIn Profile
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Hero Column: Notebook & System Preview Frame */}
-          <div className="relative mx-auto w-full max-w-md lg:mr-0">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="relative mx-auto w-full max-w-md lg:mr-0"
+          >
             <div className="hero-frame border-border/80 bg-card/50">
               <img
                 src={frame1}
-                alt="Vandit Shastri notebook conceptualizing neural layers"
+                alt="Vandit Shastri conceptual architecture sketch"
                 width={960}
                 height={1200}
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
@@ -184,19 +195,19 @@ function Index() {
 
             {/* Floating Badges */}
             <div className="float-note right-note">
-              <span>Current Industry Role</span>
+              <span>Current Role</span>
               <strong>ML Engineer @ Rootle</strong>
             </div>
             <div className="float-note left-note">
-              <span>Undergraduate Degree</span>
+              <span>Academic Degree</span>
               <strong>BTech, CSE · LJ University</strong>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
 
-      {/* Frame-by-Frame Scroll-Animated Video & Architecture Sequence */}
+      {/* Frame-by-Frame Scroll-Animated Sequence */}
       <ScrollStory />
 
       {/* Core Engineering Pillars */}
@@ -208,7 +219,7 @@ function Index() {
               Craftsmanship across the entire AI stack.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              From low-level data extraction to high-level multi-agent orchestration, Vandit combines rigorous software practices with modern machine learning paradigms.
+              From low-level asynchronous data pipelines to high-level multi-agent orchestration, I combine rigorous software engineering practices with modern machine learning paradigms.
             </p>
           </div>
 
@@ -286,16 +297,16 @@ function Index() {
       <section className="border-y border-border/80 bg-surface-soft/60 py-20 sm:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[.9fr_1.1fr]">
           <div>
-            <p className="eyebrow">The Trajectory</p>
+            <p className="eyebrow">My Trajectory</p>
             <h2 className="mt-4 font-display text-4xl font-medium sm:text-5xl">
               Learning by Building & Iterating.
             </h2>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-              From data infrastructure at Actowiz Solutions to enterprise machine learning at Rootle and undergraduate coursework at LJ University, each milestone has built a solid base for advanced research.
+              From building high-throughput data extraction frameworks at Actowiz Solutions to architecting conversational AI agents at Rootle and completing my Computer Science degree at LJ University, every milestone sharpens my ability to solve hard problems.
             </p>
             <div className="mt-8">
               <Link to="/achievements" className="button-secondary text-xs">
-                <span>View Verified Certificates & Education</span>
+                <span>View Verified Certificates & Experience</span>
                 <ArrowRight size={14} />
               </Link>
             </div>
@@ -346,33 +357,33 @@ function Index() {
         </div>
       </section>
 
-      {/* Admissions Fast-Track CTA Banner */}
+      {/* Connect CTA Banner */}
       <section className="relative overflow-hidden mx-auto max-w-4xl px-6 py-20 text-center sm:py-28">
         <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 font-mono text-xs font-semibold text-accent">
-          <GraduationCap size={15} /> Higher Studies Abroad & Research Collaborations
+          <Sparkles size={14} /> Open for Conversations &amp; Engineering Collaborations
         </div>
         <h2 className="mt-6 font-display text-4xl font-medium text-foreground sm:text-6xl">
-          Let’s build something worth studying.
+          Let’s build something extraordinary.
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Whether you are an admissions committee reviewer, university professor, or AI research collaborator, Vandit is eager to connect and discuss graduate research opportunities.
+          Whether you want to discuss conversational AI systems, collaborate on open-source machine learning, or explore research opportunities, I’d love to connect.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link to="/contact" className="button-primary">
             <span>Start a Conversation</span>
             <ArrowUpRight size={15} />
           </Link>
-          <a
-            href={profileAsset.url}
-            target="_blank"
-            rel="noreferrer"
+          <button
+            onClick={() => setResumeOpen(true)}
             className="button-secondary"
           >
-            <span>Download Official CV</span>
-            <Download size={15} />
-          </a>
+            <FileText size={15} className="text-primary" />
+            <span>View Curriculum Vitae</span>
+          </button>
         </div>
       </section>
+
+      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </SiteShell>
   );
 }

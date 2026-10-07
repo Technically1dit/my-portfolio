@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Award, BriefcaseBusiness, GraduationCap, CheckCircle2, Download, FileCheck, ExternalLink, Calendar, MapPin, Building } from "lucide-react";
+import { Award, BriefcaseBusiness, GraduationCap, CheckCircle2, Download, FileCheck, ExternalLink, Calendar, MapPin, Building, FileText } from "lucide-react";
+import { useState } from "react";
 import { SiteShell, PageIntro } from "@/components/site-shell";
-import profileAsset from "@/assets/vandit-profile.pdf.asset.json";
+import { ResumeModal } from "@/components/resume-modal";
 
 export const Route = createFileRoute("/achievements")({
   head: () => ({
     meta: [
       { title: "Academics & Experience — Vandit Shastri" },
-      { name: "description", content: "Verified academic background, professional experience at Rootle and Actowiz, and machine learning certifications of Vandit Shastri." },
+      { name: "description", content: "Academic background, professional experience at Rootle and Actowiz, and machine learning certifications of Vandit Shastri." },
       { property: "og:title", content: "Academics, Experience & Certifications — Vandit Shastri" },
       { property: "og:description", content: "A verifiable record of university education, ML engineering roles, and IBM certifications." },
       { property: "og:type", content: "website" },
@@ -54,13 +55,15 @@ const academicHighlights = [
 ];
 
 function AchievementsPage() {
+  const [resumeOpen, setResumeOpen] = useState(false);
+
   return (
     <SiteShell>
       <PageIntro
-        eyebrow="Academic & Professional Dossier"
-        title="Verified record, grounded in evidence."
-        copy="A transparent timeline of undergraduate engineering education at LJ University, industrial experience at Rootle and Actowiz, and specialized certifications in machine learning and data science."
-        highlight="Admissions Verification Ready"
+        eyebrow="Experience & Qualifications"
+        title="Experience, backed by practical results."
+        copy="A timeline of my undergraduate engineering education at LJ University, industrial roles at Rootle and Actowiz Solutions, and verified technical specializations."
+        highlight="Full-Time Machine Learning Engineer"
       />
 
       {/* Main Experience & Education Cards */}
@@ -103,8 +106,8 @@ function AchievementsPage() {
                 <BriefcaseBusiness size={24} />
               </div>
               <div className="mt-6 flex items-center gap-2">
-                <p className="eyebrow">Industry Track Record</p>
-                <span className="rounded-full bg-accent/10 px-2 py-0.5 font-mono text-[9px] font-bold text-accent">Current</span>
+                <p className="eyebrow">Industry Experience</p>
+                <span className="rounded-full bg-accent/10 px-2 py-0.5 font-mono text-[9px] font-bold text-accent">Current Role</span>
               </div>
               <h2 className="mt-2 font-display text-2xl font-medium text-foreground">
                 Machine Learning Engineer
@@ -118,7 +121,7 @@ function AchievementsPage() {
                 <span>Ahmedabad, India</span>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                1 yr 2 mos tenure (MLE: May 2026–Present | ML Intern: Sep 2025–May 2026). Architecting conversational AI agents, scalable LLM pipelines, and tool execution engines.
+                Architecting conversational AI agents, scalable LLM pipelines, context orchestration, and tool execution microservices.
               </p>
             </div>
             <div className="mt-8 border-t border-border/60 pt-4">
@@ -147,7 +150,7 @@ function AchievementsPage() {
                 <span>Ahmedabad, India</span>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                9-month role building data extraction systems, custom web crawlers, and high-throughput Python data ETL scripts for analytics platforms.
+                9-month role building data extraction systems, custom web crawlers, and high-throughput Python data ETL scripts.
               </p>
             </div>
             <div className="mt-8 border-t border-border/60 pt-4">
@@ -165,19 +168,17 @@ function AchievementsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="eyebrow">Verified Credentials</p>
+              <p className="eyebrow">Certifications</p>
               <h2 className="mt-4 font-display text-3xl font-medium sm:text-4xl text-foreground">
-                Specializations & Certifications.
+                Specializations &amp; Credentials.
               </h2>
             </div>
-            <a
-              href={profileAsset.url}
-              target="_blank"
-              rel="noreferrer"
+            <button
+              onClick={() => setResumeOpen(true)}
               className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
             >
-              <FileCheck size={14} /> Download Verified Dossier PDF
-            </a>
+              <FileCheck size={14} /> View Full Curriculum Vitae
+            </button>
           </div>
 
           <div className="mt-10 divide-y divide-border border-y border-border">
@@ -219,12 +220,12 @@ function AchievementsPage() {
       <section className="border-b border-border/80 bg-background py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="max-w-2xl">
-            <span className="eyebrow">Academic Rigor</span>
+            <span className="eyebrow">Academic Foundation</span>
             <h2 className="mt-4 font-display text-3xl font-medium sm:text-4xl text-foreground">
-              Undergraduate Coursework (LJ University).
+              Core Coursework (LJ University).
             </h2>
             <p className="mt-3 text-sm text-muted-foreground">
-              Foundational computer science subjects completed as part of the BTech in Computer Science program:
+              Fundamental computer science and AI subjects completed during my degree:
             </p>
           </div>
 
@@ -245,6 +246,8 @@ function AchievementsPage() {
           </div>
         </div>
       </section>
+
+      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </SiteShell>
   );
 }
