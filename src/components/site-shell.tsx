@@ -22,9 +22,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <div className="relative min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
       {/* Top Header */}
       <header className="sticky top-0 z-40 border-b border-border/80 bg-background/85 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
+        <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:px-6">
           {/* Brand Logo */}
-          <Link to="/" className="group flex items-center gap-2.5">
+          <Link to="/" className="group flex shrink-0 items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform group-hover:scale-105">
               <span className="font-mono text-sm font-bold">VS</span>
             </div>
@@ -38,8 +38,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
+          {/* Desktop Navigation Links — centered */}
+          <nav className="hidden flex-1 items-center justify-center gap-5 md:flex" aria-label="Main navigation">
             {links.map((link) => (
               <Link
                 key={link.to}
@@ -52,8 +52,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          {/* Header Actions */}
-          <div className="flex items-center gap-3">
+          {/* Header Actions — push to right */}
+          <div className="flex flex-1 items-center justify-end gap-2">
             <button
               onClick={() => setResumeOpen(true)}
               className="hidden items-center gap-1.5 rounded-full border border-border bg-surface-soft/80 px-3.5 py-1.5 text-xs font-medium text-foreground transition-all hover:border-primary/50 hover:bg-card sm:inline-flex"
